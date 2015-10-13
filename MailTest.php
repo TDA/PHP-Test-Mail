@@ -24,6 +24,8 @@ foreach($headers as $header) {
     echo $header."<br>";
 }
 
+// apparently the pear lib sanitizes our input, but the builtin mail() function wont :D
+/*
 $smtp = Mail::factory('smtp', array(
     'host' => 'smtp.gmail.com',
     'port' => '587',
@@ -32,14 +34,14 @@ $smtp = Mail::factory('smtp', array(
     'password' => 'dragondragon'
 ));
 
-#$mail = $smtp->send($to, $headers, $message);
+$mail = $smtp->send($to, $headers, $message);
 
 if (PEAR::isError($mail)) {
     echo '<p>' . $mail->getMessage() . '</p>';
 } else {
     echo "Mail sent to ".$to;
 }
-
+*/
 /*
  * Python version of the code
 msg = MIMEText(email, 'html')
@@ -62,7 +64,8 @@ server.quit()
 */
 
 
-//mail($to, $subject, $message."regmail", $from);
-//echo "\nAnother email here";
+if(mail($to, $subject, $message."regmail", $from)) {
+    echo "\nAnother email here";
+}
 
 
