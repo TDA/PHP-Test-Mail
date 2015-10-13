@@ -16,9 +16,13 @@ $message = "I am testing";
 
 $to = "schand31@asu.edu";
 
-$headers = "From: $from\r\n"."Subject: $subject";
 
-$headers = explode("\r\n", $headers);
+$retValue = mail($to, $subject, $message."regmail", $from);
+echo "\nAnother email here".$retValue. " this was returned";
+
+
+$headers = "From: $from\r\n"."Subject: $subject";
+$headers = explode("\n", $headers);
 
 foreach($headers as $header) {
     echo $header."<br>";
@@ -63,9 +67,5 @@ server.sendmail(me, [address], msg.as_string())
 server.quit()
 */
 
-
-if(mail($to, $subject, $message."regmail", $from)) {
-    echo "\nAnother email here";
-}
 
 
