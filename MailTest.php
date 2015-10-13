@@ -1,4 +1,6 @@
 <?php
+// Pear Mail Library
+require_once "Mail.php";
 
 /**
  * Created by PhpStorm.
@@ -8,10 +10,57 @@
  */
 
 
-$email = $_REQUEST['email'];
+$to = $_REQUEST['email'];
 $subject = "Hello";
 $message = "I am testing";
 
-mail($email, $subject, $message);
+$from = 'saipc1993@gmail.com';
 
-echo "Mail sent to ".$email;
+$headers = array(
+    'From' => $from,
+    'To' => $to,
+    'Subject' => $subject
+);
+
+$smtp = Mail::factory('smtp', array(
+    'host' => 'smtp.gmail.com',
+    'port' => '587',
+    'auth' => true,
+    'username' => $from,
+    'password' => 'dragondragon'
+));
+
+$mail = $smtp->send($to, $headers, $message);
+
+if (PEAR::isError($mail)) {
+    echo '<p>' . $mail->getMessage() . '</p>';
+} else {
+    echo "Mail sent to ".$to;
+}
+
+/*
+ * Python version of the code
+msg = MIMEText(email, 'html')
+me = "saipc1993@gmail.com"
+# me == the sender's email address
+msg['Subject'] = subject
+msg['From'] = me
+msg['To'] = address
+
+# Send the message via our own SMTP server, but don't include the
+# envelope header.
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.ehlo()
+server.starttls()
+#socket = server._get_socket()
+#Next, log in to the server
+server.login("saipc1993", "dragondragon")
+server.sendmail(me, [address], msg.as_string())
+server.quit()
+*/
+
+
+//mail($to, $subject, $message."regmail", $from);
+//echo "\nAnother email here";
+
+
