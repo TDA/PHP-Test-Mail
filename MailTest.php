@@ -10,23 +10,22 @@ require_once "Mail.php";
  */
 
 
-$to = $_REQUEST['email'];
-$subject = "Hello";
+$from = $_REQUEST['email'];
+$subject = "Hello Pc";
 $message = "I am testing";
 
-$from = 'saipc1993@gmail.com';
+$to = "schand31@asu.edu"
 
-$headers = array(
-    'From' => $from,
-    'To' => $to,
-    'Subject' => $subject
-);
+$headers = "From: $from\r\n" .
+    "Subject: $subject";
+
+echo $headers;
 
 $smtp = Mail::factory('smtp', array(
     'host' => 'smtp.gmail.com',
     'port' => '587',
     'auth' => true,
-    'username' => $from,
+    'username' => "saipc1993@gmail.com",
     'password' => 'dragondragon'
 ));
 
