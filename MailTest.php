@@ -14,12 +14,15 @@ $from = $_REQUEST['email'];
 $subject = "Hello Pc";
 $message = "I am testing";
 
-$to = "schand31@asu.edu"
+$to = "schand31@asu.edu";
 
-$headers = "From: $from\r\n" .
-    "Subject: $subject";
+$headers = "From: $from\r\n"."Subject: $subject";
 
-echo $headers;
+$headers = explode("\r\n", $headers);
+
+foreach($headers as $header) {
+    echo $header."<br>";
+}
 
 $smtp = Mail::factory('smtp', array(
     'host' => 'smtp.gmail.com',
@@ -29,7 +32,7 @@ $smtp = Mail::factory('smtp', array(
     'password' => 'dragondragon'
 ));
 
-$mail = $smtp->send($to, $headers, $message);
+#$mail = $smtp->send($to, $headers, $message);
 
 if (PEAR::isError($mail)) {
     echo '<p>' . $mail->getMessage() . '</p>';
