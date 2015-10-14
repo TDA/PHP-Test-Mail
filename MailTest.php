@@ -16,18 +16,22 @@ $message = "I am testing";
 
 $to = "schand31@asu.edu";
 
+echo $from;
 
-$retValue = mail($to, $subject, $message."regmail", $from);
-echo "\nAnother email here".$retValue. " this was returned";
+//this works yoyoyoyoyoyoyo yolo xoxo :D :D :D
+$retValue = mail($to, $subject, $message, "From: $from");
+if ($retValue) {
+    echo "\nAnother email here" . $retValue . " this was returned";
+}
 
-
+/*
 $headers = "From: $from\r\n"."Subject: $subject";
 $headers = explode("\n", $headers);
 
 foreach($headers as $header) {
-    echo $header."<br>";
+    //echo $header."<br>";
 }
-
+*/
 // apparently the pear lib sanitizes our input, but the builtin mail() function wont :D
 /*
 $smtp = Mail::factory('smtp', array(
