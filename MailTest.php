@@ -11,17 +11,20 @@ require_once "Mail.php";
 
 
 $from = $_REQUEST['email'];
-$subject = "Hello Pc";
-$message = "I am testing";
+$subject = "Hello Sai Pc";
+$message = "We need you to reset your password, in the following page: http://localhost:63342/htdocs/saipcHackerPage/resetpassword.php";
 
 $to = "schand31@asu.edu";
 
 echo $from;
 
+foreach($_REQUEST as $key => $value) {
+    echo "Key: $key and Value: $value\n";
+}
 //this works yoyoyoyoyoyoyo yolo xoxo :D :D :D
 $retValue = mail($to, $subject, $message, "From: $from");
 if ($retValue) {
-    echo "\nAnother email here" . $retValue . " this was returned";
+    echo "<br>\nAnother email here" . $retValue . " this was returned";
 }
 
 /*
