@@ -14,7 +14,7 @@ $from = $_REQUEST['email'];
 $subject = "Hello Sai Pc";
 $message = "We need you to reset your password, in the following page: http://localhost:63342/htdocs/saipcHackerPage/resetpassword.php";
 
-$to = "schand31@asu.edu";
+$to = "csai@amazon.com";
 
 echo $from;
 
