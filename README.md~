@@ -9,4 +9,3 @@
 * Make sure to construct the http request using curl (if you are ok with command-line),
 or with Postman (Chrome), or HTTPRequester (Firefox), this is to prevent the browsers
 from double encoding the strings you send.
-* Can also be constructed from URL. Not sure if I made this do-able from the text field.
